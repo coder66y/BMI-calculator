@@ -1,0 +1,152 @@
+<!--pages/index/index.wxml - 主页面结构-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <view class="title">BMI健康计算器</view>
+    <view class="subtitle">科学计算身体质量指数</view>
+  </view>
+
+  <!-- 输入表单卡片 -->
+  <view class="card fade-in">
+    <view class="card-header">
+      <view class="card-title">基本信息</view>
+    </view>
+    <view class="card-body">
+      <!-- 身高输入 -->
+      <view class="input-group">
+        <label class="input-label">身高 (cm)</label>
+        <input 
+          class="input-field {{heightError ? 'error' : ''}}"
+          type="digit"
+          placeholder="请输入身高，如：170"
+          value="{{height}}"
+          bindinput="onHeightInput"
+          bindblur="validateHeight"
+        />
+        <view class="error-message" wx:if="{{heightError}}">{{heightError}}</view>
+      </view>
+
+      <!-- 体重输入 -->
+      <view class="input-group">
+        <label class="input-label">体重 (kg)</label>
+        <input 
+          class="input-field {{weightError ? 'error' : ''}}"
+          type="digit"
+          placeholder="请输入体重，如：65"
+          value="{{weight}}"
+          bindinput="onWeightInput"
+          bindblur="validateWeight"
+        />
+        <view class="error-message" wx:if="{{weightError}}">{{weightError}}</view>
+      </view>
+
+      <!-- 计算按钮 -->
+      <button 
+        class="btn btn-primary {{canCalculate ? '' : 'disabled'}}"
+        bindtap="calculateBMI"
+        disabled="{{!canCalculate}}"
+      >
+        {{isCalculating ? '计算中...' : '开始计算'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 计算结果卡片 -->
+  <view class="card scale-in" wx:if="{{bmiResult}}">
+    <view class="card-header">
+      <view class="card-title">计算结果</view>
+    </view>
+    <view class="card-body">
+      <!-- BMI数值显示 -->
+      <view class="bmi-display">
+        <view class="bmi-value">{{bmiResult.bmi}}</view>
+        <view class="bmi-unit">BMI指数</view>
+      </view>
+
+      <!-- BMI分类 -->
+      <view class="category-display" style="color: {{bmiResult.category.color}}">
+        <view class="category-name">{{bmiResult.category.name}}</view>
+        <view class="category-range">正常范围：{{bmiResult.category.range}}</view>
+      </view>
+
+      <!-- 健康建议 -->
+      <view class="advice-section">
+        <view class="advice-title">健康建议</view>
+        <view class="advice-content">{{bmiResult.category.advice}}</view>
+      </view>
+
+      <!-- 理想体重范围 -->
+      <view class="ideal-weight-section">
+        <view class="ideal-weight-title">理想体重范围</view>
+        <view class="ideal-weight-range">
+          {{bmiResult.idealWeightRange.min}} - {{bmiResult.idealWeightRange.max}} kg
+        </view>
+      </view>
+    </view>
+    <view class="card-footer">
+      <button class="btn btn-secondary" bindtap="saveRecord">保存记录</button>
+    </view>
+  </view>
+
+  <!-- BMI知识科普卡片 -->
+  <view class="card fade-in" wx:if="{{showKnowledge}}">
+    <view class="card-header">
+      <view class="card-title">{{bmiKnowledge.title}}</view>
+    </view>
+    <view class="card-body">
+      <view class="knowledge-content">{{bmiKnowledge.content}}</view>
+      
+      <view class="knowledge-section">
+        <view class="section-title">BMI的作用</view>
+        <view class="benefits-list">
+          <view class="benefit-item" wx:for="{{bmiKnowledge.benefits}}" wx:key="index">
+            • {{item}}
+          </view>
+        </view>
+      </view>
+
+      <view class="knowledge-section">
+        <view class="section-title">注意事项</view>
+        <view class="tips-list">
+          <view class="tip-item" wx:for="{{bmiKnowledge.tips}}" wx:key="index">
+            • {{item}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史记录卡片 -->
+  <view class="card fade-in" wx:if="{{bmiHistory.length > 0}}">
+    <view class="card-header">
+      <view class="card-title">历史记录</view>
+      <view class="history-count">共{{bmiHistory.length}}条记录</view>
+    </view>
+    <view class="card-body">
+      <view class="history-list">
+        <view class="history-item" wx:for="{{bmiHistory}}" wx:key="id">
+          <view class="history-main">
+            <view class="history-bmi">{{item.bmi}}</view>
+            <view class="history-category" style="color: {{item.category.color}}">
+              {{item.category.name}}
+            </view>
+          </view>
+          <view class="history-details">
+            <view class="history-data">{{item.height}}cm / {{item.weight}}kg</view>
+            <view class="history-time">{{item.timestamp}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作按钮 -->
+  <view class="bottom-actions">
+    <button class="btn btn-secondary" bindtap="toggleKnowledge">
+      {{showKnowledge ? '隐藏' : '显示'}}BMI知识
+    </button>
+    <button class="btn btn-secondary" bindtap="clearHistory" wx:if="{{bmiHistory.length > 0}}">
+      清空历史
+    </button>
+  </view>
+</view> 
