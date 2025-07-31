@@ -359,6 +359,19 @@
   border-radius: 8rpx;
 }
 
+/* 分享按钮样式 */
+.action-buttons {
+  display: flex;
+  gap: 12rpx;
+}
+
+.share-btn {
+  flex: 1;
+  padding: 12rpx 0;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+}
+
 /* 知识内容样式 - iOS风格 */
 .knowledge-content {
   font-size: 20rpx;

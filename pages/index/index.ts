@@ -238,7 +238,98 @@ Page({
     });
   },
 
-  // 分享功能
+  // 分享BMI计算结果
+  shareResult(): void {
+    if (!this.data.bmiResult) {
+      wx.showToast({
+        title: '请先计算BMI',
+        icon: 'none',
+        duration: 1500
+      });
+      return;
+    }
+
+    const { bmiResult } = this.data;
+    const shareContent = this.generateShareContent(bmiResult);
+
+    wx.showActionSheet({
+      itemList: ['分享给朋友', '分享到朋友圈', '复制分享内容'],
+      success: (res: { tapIndex: number }) => {
+        switch (res.tapIndex) {
+          case 0:
+            this.shareToFriend(shareContent);
+            break;
+          case 1:
+            this.shareToTimeline(shareContent);
+            break;
+          case 2:
+            this.copyShareContent(shareContent);
+            break;
+        }
+      }
+    });
+  },
+
+  // 生成分享内容
+  generateShareContent(bmiResult: BMIAnalysisResult): string {
+    const { bmi, category, idealWeightRange } = bmiResult;
+    const date = new Date().toLocaleDateString('zh-CN');
+    
+    return `📊 BMI健康报告
+    
+📈 BMI指数：${bmi}
+🏷️ 身体状态：${category.name}
+📏 理想体重：${idealWeightRange.min}-${idealWeightRange.max}kg
+💡 健康建议：${category.advice}
+📅 测试时间：${date}
+
+🔗 快来测试你的BMI指数吧！
+#BMI健康计算器 #健康生活`;
+  },
+
+  // 分享给朋友
+  shareToFriend(shareContent: string): void {
+    wx.setClipboardData({
+      data: shareContent,
+      success: () => {
+        wx.showToast({
+          title: '分享内容已复制',
+          icon: 'success',
+          duration: 1500
+        });
+      }
+    });
+  },
+
+  // 分享到朋友圈
+  shareToTimeline(shareContent: string): void {
+    wx.setClipboardData({
+      data: shareContent,
+      success: () => {
+        wx.showToast({
+          title: '分享内容已复制',
+          icon: 'success',
+          duration: 1500
+        });
+      }
+    });
+  },
+
+  // 复制分享内容
+  copyShareContent(shareContent: string): void {
+    wx.setClipboardData({
+      data: shareContent,
+      success: () => {
+        wx.showToast({
+          title: '内容已复制',
+          icon: 'success',
+          duration: 1500
+        });
+      }
+    });
+  },
+
+  // 默认分享功能
   onShareAppMessage(): any {
     return {
       title: 'BMI健康计算器 - 科学计算身体质量指数',

@@ -84,7 +84,10 @@
       </view>
     </view>
     <view class="card-footer">
-      <button class="btn btn-secondary" bindtap="saveRecord">保存记录</button>
+      <view class="action-buttons">
+        <button class="btn btn-secondary share-btn" bindtap="saveRecord">保存记录</button>
+        <button class="btn btn-primary share-btn" bindtap="shareResult">分享结果</button>
+      </view>
     </view>
   </view>
 

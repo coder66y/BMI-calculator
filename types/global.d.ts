@@ -38,6 +38,11 @@ declare namespace WechatMiniprogram {
     validateInputs?(): void;
     calculateBMI?(): void;
     saveRecord?(): void;
+    shareResult?(): void;
+    generateShareContent?(bmiResult: BMIAnalysisResult): string;
+    shareToFriend?(shareContent: string): void;
+    shareToTimeline?(shareContent: string): void;
+    copyShareContent?(shareContent: string): void;
     loadBMIHistory?(): void;
     loadBMIKnowledge?(): void;
     toggleKnowledge?(): void;
@@ -58,6 +63,15 @@ declare namespace WechatMiniprogram {
       title: string;
       content: string;
       success?: (res: { confirm: boolean; cancel: boolean }) => void;
+    }): void;
+    showActionSheet(options: {
+      itemList: string[];
+      success?: (res: { tapIndex: number }) => void;
+    }): void;
+    setClipboardData(options: {
+      data: string;
+      success?: () => void;
+      fail?: () => void;
     }): void;
     getStorageSync(key: string): any;
     setStorageSync(key: string, data: any): void;
