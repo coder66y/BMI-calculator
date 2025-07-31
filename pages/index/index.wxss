@@ -1,257 +1,467 @@
-/* 马卡龙多色渐变风格 */
+/* iOS风格设计 */
 
-/* 背景马卡龙多色渐变 */
+/* 全局容器 - iOS风格背景 */
 .container {
-  padding: 40rpx 0;
+  padding: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #A2D5F2 0%, #FFB6B9 60%, #FFE6A7 100%);
+  background: linear-gradient(180deg, #f2f2f7 0%, #ffffff 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 页面标题 */
+/* 页面标题区域 - iOS风格头部 */
 .header {
   text-align: center;
-  margin-bottom: 48rpx;
-  padding: 32rpx 0 0 0;
+  padding: 30rpx;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,248,248,0.95) 100%);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-bottom: 0.5rpx solid rgba(0,0,0,0.1);
+  margin-bottom: 0;
+  position: relative;
 }
+
 .title {
-  font-size: 44rpx;
+  font-size: 34rpx;
   font-weight: 600;
-  color: #FFB6B9;
+  color: #1d1d1f;
   margin-bottom: 8rpx;
-  letter-spacing: 2rpx;
+  letter-spacing: -0.5rpx;
 }
+
 .subtitle {
   font-size: 26rpx;
-  color: #A2D5F2;
+  color: #86868b;
   font-weight: 400;
+  line-height: 1.4;
 }
 
-/* 卡片马卡龙风格 */
+/* 卡片基础样式 - iOS毛玻璃效果 */
 .card {
-  background: rgba(255,255,255,0.92);
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 24rpx rgba(162,213,242,0.10);
-  margin: 0 32rpx 36rpx 32rpx;
-  animation: fadeIn 0.5s;
-  border: 2rpx solid #FFE6A7;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: 16rpx;
+  box-shadow: 0 1rpx 3rpx rgba(0,0,0,0.1), 0 1rpx 2rpx rgba(0,0,0,0.06);
+  margin: 16rpx 20rpx 24rpx 20rpx;
+  overflow: hidden;
+  border: 0.5rpx solid rgba(0,0,0,0.05);
+  animation: slideInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20rpx); }
-  to { opacity: 1; transform: none; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .card-header {
-  padding: 28rpx 32rpx 0 32rpx;
+  padding: 24rpx 20rpx 0 20rpx;
   border-bottom: none;
 }
+
 .card-title {
-  font-size: 32rpx;
-  font-weight: 500;
-  color: #B8E0D2;
-}
-.card-body {
-  padding: 24rpx 32rpx 32rpx 32rpx;
-}
-.card-footer {
-  padding: 18rpx 32rpx 24rpx 32rpx;
-  background: none;
-  border-top: none;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 4rpx;
+  letter-spacing: -0.2rpx;
 }
 
-/* 输入框马卡龙风格 */
-.input-group {
-  margin-bottom: 32rpx;
+.card-body {
+  padding: 16rpx 20rpx 24rpx 20rpx;
 }
+
+.card-footer {
+  padding: 16rpx 20rpx 20rpx 20rpx;
+  background: rgba(248,248,248,0.5);
+  border-top: 0.5rpx solid rgba(0,0,0,0.05);
+}
+
+/* 输入框组样式 - iOS风格 */
+.input-group {
+  margin-bottom: 24rpx;
+}
+
 .input-label {
   display: block;
-  font-size: 28rpx;
-  color: #A2D5F2;
-  margin-bottom: 10rpx;
-  font-weight: 400;
-}
-.input-field {
-  width: 100%;
-  padding: 0 0 18rpx 0;
-  border: none;
-  border-bottom: 2rpx solid #FFB6B9;
-  border-radius: 0 0 8rpx 8rpx;
-  font-size: 32rpx;
-  background: transparent;
-  color: #222;
-  line-height: 48rpx;
-  transition: border-color 0.3s;
-}
-.input-field:focus {
-  border-bottom: 2rpx solid #A2D5F2;
-  outline: none;
-}
-.input-field.error {
-  border-bottom: 2rpx solid #FFB6B9;
-}
-.input-field::placeholder {
-  color: #FFE6A7;
-  font-size: 28rpx;
-  font-weight: 300;
-  line-height: 48rpx;
-}
-.error-message {
-  color: #FFB6B9;
   font-size: 22rpx;
-  margin-top: 6rpx;
-  padding-left: 2rpx;
+  color: #1d1d1f;
+  margin-bottom: 8rpx;
+  font-weight: 500;
+  letter-spacing: -0.2rpx;
 }
 
-/* 按钮马卡龙渐变风格 */
+.input-field {
+  width: 100%;
+  padding: 16rpx 0;
+  border: none;
+  border-bottom: 1rpx solid #d1d1d6;
+  border-radius: 0;
+  font-size: 24rpx;
+  background: transparent;
+  color: #1d1d1f;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+}
+
+.input-field:focus {
+  border-bottom: 2rpx solid #007aff;
+  outline: none;
+}
+
+.input-field.error {
+  border-bottom: 2rpx solid #ff3b30;
+}
+
+.input-field::placeholder {
+  color: #8e8e93;
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.error-message {
+  color: #ff3b30;
+  font-size: 16rpx;
+  margin-top: 4rpx;
+  padding-left: 0;
+  font-weight: 400;
+}
+
+/* 按钮样式 - iOS风格 */
 .btn {
   display: block;
   width: 100%;
-  padding: 26rpx 0;
-  border-radius: 20rpx;
+  padding: 16rpx 0;
+  border-radius: 12rpx;
   border: none;
-  font-size: 30rpx;
-  font-weight: 500;
+  font-size: 26rpx;
+  font-weight: 600;
   text-align: center;
-  transition: all 0.2s cubic-bezier(.4,0,.2,1);
-  margin-bottom: 0;
-  box-shadow: 0 2rpx 8rpx rgba(255,182,185,0.10);
-  outline: none;
-  background: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  letter-spacing: -0.2rpx;
 }
+
 .btn-primary {
-  background: linear-gradient(90deg, #A2D5F2 0%, #FFB6B9 100%);
-  color: #fff;
-  box-shadow: 0 4rpx 16rpx rgba(255,182,185,0.10);
+  background: #007aff;
+  color: #ffffff;
+  box-shadow: 0 2rpx 8rpx rgba(0,122,255,0.3);
 }
+
 .btn-primary:active {
-  transform: scale(0.97);
-  background: linear-gradient(90deg, #FFB6B9 0%, #A2D5F2 100%);
+  background: #0056cc;
+  transform: scale(0.98);
+  box-shadow: 0 1rpx 4rpx rgba(0,122,255,0.4);
 }
+
 .btn-primary.disabled {
-  background: #FFE6A7;
-  color: #bdbdbd;
+  background: #d1d1d6;
+  color: #8e8e93;
   box-shadow: none;
+  transform: none;
 }
+
 .btn-secondary {
-  background: #B8E0D2;
-  color: #fff;
-  border: 2rpx solid #A2D5F2;
-  box-shadow: 0 2rpx 8rpx rgba(162,213,242,0.10);
+  background: rgba(255,255,255,0.8);
+  color: #007aff;
+  border: 1rpx solid #007aff;
+  box-shadow: 0 1rpx 3rpx rgba(0,0,0,0.1);
 }
+
 .btn-secondary:active {
-  background: #A2D5F2;
+  background: rgba(0,122,255,0.1);
   transform: scale(0.98);
 }
 
-/* BMI结果显示 */
+/* BMI结果显示 - iOS风格 */
 .bmi-display {
   text-align: center;
   margin-bottom: 24rpx;
-  padding: 18rpx 0;
-  background: linear-gradient(90deg, #FFE6A7 0%, #B8E0D2 100%);
+  padding: 24rpx;
+  background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
   border-radius: 12rpx;
+  color: white;
+  box-shadow: 0 4rpx 12rpx rgba(0,122,255,0.3);
 }
+
 .bmi-value {
-  font-size: 60rpx;
-  font-weight: 600;
-  color: #FFB6B9;
-  margin-bottom: 6rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 4rpx;
+  letter-spacing: -1rpx;
 }
+
 .bmi-unit {
   font-size: 24rpx;
-  color: #A2D5F2;
+  opacity: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.2rpx;
+}
+
+/* BMI分类显示 - iOS风格 */
+.category-display {
+  text-align: center;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  background: rgba(248,248,248,0.8);
+  border-radius: 12rpx;
+  border-left: 4rpx solid #007aff;
+}
+
+.category-name {
+  font-size: 24rpx;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+  color: #1d1d1f;
+  letter-spacing: -0.2rpx;
+}
+
+.category-range {
+  font-size: 24rpx;
+  color: #86868b;
   font-weight: 400;
 }
 
-/* BMI分类显示 */
-.category-display {
-  text-align: center;
-  margin-bottom: 18rpx;
-  padding: 12rpx 0;
-  background: #FFE6A7;
-  border-radius: 8rpx;
-}
-.category-name {
-  font-size: 32rpx;
-  font-weight: 500;
-  margin-bottom: 4rpx;
-  color: #B8E0D2;
-}
-.category-range {
-  font-size: 20rpx;
-  color: #A2D5F2;
-  opacity: 0.8;
-}
-
-/* 健康建议 */
+/* 健康建议 - iOS风格 */
 .advice-section {
-  margin-bottom: 18rpx;
-  padding: 16rpx 0 16rpx 12rpx;
-  background: #B8E0D2;
-  border-radius: 8rpx;
-  border-left: 4rpx solid #A2D5F2;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  background: rgba(0,122,255,0.05);
+  border-radius: 12rpx;
+  border-left: 4rpx solid #007aff;
 }
 
-/* 理想体重范围 */
+.advice-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8rpx;
+  letter-spacing: -0.2rpx;
+}
+
+.advice-content {
+  font-size: 24rpx;
+  color: #1d1d1f;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* 理想体重范围 - iOS风格 */
 .ideal-weight-section {
   margin-bottom: 12rpx;
-  padding: 10rpx 0 10rpx 12rpx;
-  background: #FFE6A7;
-  border-radius: 8rpx;
-}
-.ideal-weight-title {
-  font-size: 24rpx;
-  color: #A2D5F2;
-  font-weight: 500;
-}
-.ideal-weight-range {
-  font-size: 22rpx;
-  color: #222;
+  padding: 16rpx 20rpx;
+  background: rgba(248,248,248,0.8);
+  border-radius: 12rpx;
 }
 
-/* 历史记录 */
-.history-list {
-  margin-top: 8rpx;
+.ideal-weight-title {
+  font-size: 24rpx;
+  color: #86868b;
+  font-weight: 500;
+  margin-bottom: 4rpx;
+  letter-spacing: -0.2rpx;
 }
+
+.ideal-weight-range {
+  font-size: 24rpx;
+  color: #1d1d1f;
+  font-weight: 600;
+  letter-spacing: -0.2rpx;
+}
+
+/* 历史记录 - iOS风格 */
+.history-list {
+  margin-top: 12rpx;
+}
+
 .history-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18rpx 0;
-  border-bottom: 1rpx solid #FFE6A7;
+  padding: 16rpx 0;
+  border-bottom: 0.5rpx solid rgba(0,0,0,0.05);
 }
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
 .history-main {
   display: flex;
   align-items: center;
+  flex: 1;
 }
+
 .history-bmi {
-  font-size: 32rpx;
-  font-weight: 500;
-  color: #FFB6B9;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #007aff;
   margin-right: 12rpx;
+  letter-spacing: -0.2rpx;
 }
+
 .history-category {
   font-size: 24rpx;
-  color: #A2D5F2;
+  color: #86868b;
+  padding: 4rpx 8rpx;
+  background: rgba(248,248,248,0.8);
+  border-radius: 6rpx;
+  font-weight: 500;
 }
+
 .history-details {
   text-align: right;
+  flex-shrink: 0;
 }
+
 .history-data {
-  font-size: 20rpx;
-  color: #A2D5F2;
+  font-size: 24rpx;
+  color: #86868b;
+  margin-bottom: 2rpx;
+  font-weight: 400;
 }
+
 .history-time {
+  font-size: 24rpx;
+  color: #8e8e93;
+  font-weight: 400;
+}
+
+.history-count {
   font-size: 18rpx;
-  color: #FFE6A7;
+  color: #86868b;
+  font-weight: 400;
+  letter-spacing: -0.2rpx;
 }
 
-/* 底部操作按钮 */
+/* 底部操作按钮 - iOS风格 */
 .bottom-actions {
-  margin: 32rpx 32rpx 0 32rpx;
+  margin: 24rpx 20rpx;
   display: flex;
-  gap: 24rpx;
+  gap: 12rpx;
 }
 
-/* 统一字体 */
-page, .container, .card, .btn, .input-label, .input-field, .bmi-value, .category-name, .advice-section, .ideal-weight-title {
-  font-family: "PingFang SC", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+.bottom-actions .btn {
+  flex: 1;
+  padding: 12rpx 0;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+}
+
+/* 知识内容样式 - iOS风格 */
+.knowledge-content {
+  font-size: 20rpx;
+  color: #1d1d1f;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+  font-weight: 400;
+}
+
+.knowledge-section {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 12rpx;
+  letter-spacing: -0.2rpx;
+}
+
+.benefits-list,
+.tips-list {
+  padding-left: 16rpx;
+}
+
+.benefit-item,
+.tip-item {
+  font-size: 20rpx;
+  color: #1d1d1f;
+  line-height: 1.5;
+  margin-bottom: 6rpx;
+  font-weight: 400;
+}
+
+/* 响应式设计 - iOS适配 */
+@media (max-width: 750rpx) {
+  .container {
+    padding: 0;
+  }
+  
+  .card {
+    margin: 12rpx 16rpx 20rpx 16rpx;
+  }
+  
+  .header {
+    padding: 64rpx 24rpx 32rpx 24rpx;
+  }
+  
+  .title {
+    font-size: 40rpx;
+  }
+  
+  .subtitle {
+    font-size: 18rpx;
+  }
+}
+
+/* iOS风格动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scale-in {
+  animation: scaleIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* iOS风格滚动条 */
+::-webkit-scrollbar {
+  width: 8rpx;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4rpx;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.3);
 } 
